@@ -56,10 +56,7 @@ int main()
     display(newll);
     
     struct node *thisnode  = search_ll(newll,"City")->item;
-    if (thisnode == NULL)
-	printf("Not Found.\n");
-    else
-	printf("%s\n", thisnode->value);
-
+    printf("%s\n",thisnode == NULL?"NOT FOUND": thisnode->value);
+    
     return 0;
 }
