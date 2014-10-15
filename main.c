@@ -10,6 +10,8 @@ struct node
 int ismatch(void *in, void *key)
 {
     struct node *_in = (struct node *)in;
+    printf("matching %s with %s\n", _in->key,(char *)key);
+    
     return strcmp(_in->key, (char *)key) == 0;
 }
 
@@ -55,7 +57,7 @@ int main()
     AddToLinkedList(newll,"Kolkata","City");
     display(newll);
     
-    struct node *thisnode  = search_ll(newll,"City")->item;
+    struct node *thisnode  = search_ll(newll,"Planet");
     printf("%s\n",thisnode == NULL?"NOT FOUND": thisnode->value);
     
     return 0;
