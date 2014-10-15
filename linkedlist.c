@@ -27,7 +27,7 @@ void *search_ll(struct linkedlist *ll, void *key)
     
     thisnode = thisnode->next;
   }
-  printf("Not found..\n");
+
   return NULL;
 }
 
@@ -39,7 +39,6 @@ void free_ll(struct linkedlist *ll)
   struct llnode *nextnode;
   while(thisnode != NULL)
   {
-    printf("Freeing...%s\n", ll->tostring(thisnode->item));
     nextnode = thisnode->next;
     ll->free(thisnode->item);
     free(thisnode);

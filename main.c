@@ -9,9 +9,7 @@ struct node
 
 int ismatch(void *in, void *key)
 {
-    struct node *_in = (struct node *)in;
-    printf("matching %s with %s\n", _in->key,(char *)key);
-    
+    struct node *_in = (struct node *)in;    
     return strcmp(_in->key, (char *)key) == 0;
 }
 
