@@ -16,14 +16,14 @@ static struct llnode *malloc_llnode(void *what, size_t length)
   return newnode;
 }
 
-struct llnode *search_ll(struct linkedlist *ll, void *key)
+void *search_ll(struct linkedlist *ll, void *key)
 {
   struct llnode *thisnode = ll->head;
   
   while(thisnode != NULL)
   {
     if (ll->ismatch(thisnode->item, key))
-      return thisnode;
+      return thisnode->item;
     
     thisnode = thisnode->next;
   }

@@ -55,7 +55,7 @@ int main()
     AddToLinkedList(newll,"Kolkata","City");
     display(newll);
     
-    struct node *thisnode  = search_ll(newll,"City")->item;
+    struct node *thisnode  = search_ll(newll,"City");
     if (thisnode == NULL)
 	printf("Not Found.\n");
     else
