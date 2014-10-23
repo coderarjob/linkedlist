@@ -22,7 +22,8 @@
 	struct llnode *head;
     };
     
-    void *search_ll(struct linkedlist *ll, void *key);
+    void remove_node(struct llnode *node,struct linkedlist *ll);
+    struct llnode *search_ll(struct linkedlist *ll, void *key);
     void free_ll(struct linkedlist *ll);
     void insert_to_ll(struct linkedlist *ll, void *what, size_t length);
     struct linkedlist *create_ll( int (*ismatch)(void *in, void*what), 

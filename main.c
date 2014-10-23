@@ -9,7 +9,7 @@ struct node
 
 int ismatch(void *in, void *key)
 {
-    struct node *_in = (struct node *)in;
+    struct node *_in = (struct node *)in;    
     return strcmp(_in->key, (char *)key) == 0;
 }
 
@@ -55,11 +55,34 @@ int main()
     AddToLinkedList(newll,"Kolkata","City");
     display(newll);
     
-    struct node *thisnode  = search_ll(newll,"City");
-    if (thisnode == NULL)
-	printf("Not Found.\n");
+    
+    struct llnode *gnode = search_ll(newll,"Name");
+    
+    if (gnode != NULL){
+	struct node *thisnode  = (struct node *)gnode->item;
+	printf("Found value:%s\n",thisnode->value);
+    }
     else
-	printf("%s\n", thisnode->value);
-
+	printf("%s\n","Not found.");
+    
+    
+    //deleting
+    printf("Deleting:\n");
+    
+    gnode = search_ll(newll,"Name");
+    if (gnode != NULL){
+	remove_node(gnode,newll);
+	
+	display(newll);
+	if (newll->head == NULL)
+	    printf("Linked list is empty.\n");
+    }
+    else
+	printf("Not found. Skipped deletion.\n");
+    
+    
+    
+   
+    
     return 0;
 }
