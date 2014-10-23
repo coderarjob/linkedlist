@@ -16,24 +16,55 @@ static struct llnode *malloc_llnode(void *what, size_t length)
   return newnode;
 }
 
-void *search_ll(struct linkedlist *ll, void *key)
+struct llnode *search_ll(struct linkedlist *ll, void *key)
 {
   struct llnode *thisnode = ll->head;
   
   while(thisnode != NULL)
   {
     if (ll->ismatch(thisnode->item, key))
-      return thisnode->item;
+      return thisnode;
     
     thisnode = thisnode->next;
   }
-
+  
   return NULL;
+}
+
+static void remove_headNode(struct linkedlist *ll, struct llnode *next)
+{
+    if (next != NULL)
+	next->prev = ll->head->prev;
+    
+    ll->head = next;
+}
+
+static void remove_lastNode(struct linkedlist *ll, struct llnode *node)
+{
+    ll->head->prev = node->prev;
+}
+
+void remove_node(struct llnode *node,struct linkedlist *ll)
+{   
+    if (node == ll->head)
+	remove_headNode(ll,ll->head->next);
+    else
+    {
+	node->prev->next = node->next;
+	
+	if (node ->next == NULL)
+	    remove_lastNode(ll,node);
+	else
+	    node->next->prev = node->prev;	
+    }
+    
+    free(node->item);
+    free(node);
 }
 
 void free_ll(struct linkedlist *ll)
 {
-  printf("\nFREE\n");
+  fprintf(stderr,"FREE\n");
   
   struct llnode *thisnode = ll->head;
   struct llnode *nextnode;

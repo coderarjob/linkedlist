@@ -55,8 +55,34 @@ int main()
     AddToLinkedList(newll,"Kolkata","City");
     display(newll);
     
-    struct node *thisnode  = search_ll(newll,"Planet");
-    printf("%s\n",thisnode == NULL?"NOT FOUND": thisnode->value);
+    
+    struct llnode *gnode = search_ll(newll,"Name");
+    
+    if (gnode != NULL){
+	struct node *thisnode  = (struct node *)gnode->item;
+	printf("Found value:%s\n",thisnode->value);
+    }
+    else
+	printf("%s\n","Not found.");
+    
+    
+    //deleting
+    printf("Deleting:\n");
+    
+    gnode = search_ll(newll,"Name");
+    if (gnode != NULL){
+	remove_node(gnode,newll);
+	
+	display(newll);
+	if (newll->head == NULL)
+	    printf("Linked list is empty.\n");
+    }
+    else
+	printf("Not found. Skipped deletion.\n");
+    
+    
+    
+   
     
     return 0;
 }
