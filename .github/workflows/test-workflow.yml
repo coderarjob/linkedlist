@@ -19,11 +19,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: View file system
+        run: |
+          ls -a
+          
       - name: Update dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential 
+          
       - name: Building
         run: |
           gcc -Wall -o ll *.c
-          
