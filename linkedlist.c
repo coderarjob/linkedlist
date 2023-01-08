@@ -89,21 +89,22 @@ struct linkedlist *create_ll( int (*ismatch)(void *in, void*what),
     
 }
 
-void insert_to_ll(struct linkedlist *ll, void *what, size_t length)
+struct llnode *insert_to_ll(struct linkedlist *ll, void *what, size_t length)
 {
+  struct llnode *newnode = malloc_llnode(what,length);
+
   if (ll->head == NULL)
   {
-    //create head
-    ll->head = malloc_llnode(what,length);
-    ll->head->prev=ll->head;
+	//create head
+	ll->head = newnode;
+	ll->head->prev=ll->head;
   }
   else
   {
-    struct llnode *newnode = malloc_llnode(what,length);
-    
-    newnode->prev = ll->head->prev;
-    ll->head->prev->next = newnode;
-    ll->head->prev = newnode;
+	newnode->prev = ll->head->prev;
+	ll->head->prev->next = newnode;
+	ll->head->prev = newnode;
   }
   
+  return newnode;
 }

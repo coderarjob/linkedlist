@@ -30,7 +30,9 @@ void AddToLinkedList(struct linkedlist *ll, char *value, char *key)
     strcpy(thisnode.value,value);
     strcpy(thisnode.key,key);
     
-    insert_to_ll(ll,&thisnode,sizeof(struct node));
+    struct node *newnode;
+    newnode = insert_to_ll(ll,&thisnode,sizeof(struct node))->item;
+    printf("adding..%s\n",newnode->key);
 }
 
 void display(struct linkedlist *ll)
@@ -50,9 +52,11 @@ void display(struct linkedlist *ll)
 int main()
 {
     struct linkedlist *newll = create_ll(ismatch,freenode,tostring);
+
     AddToLinkedList(newll,"Arjob","Name");
     AddToLinkedList(newll,"26","Age");
     AddToLinkedList(newll,"Kolkata","City");
+
     display(newll);
     
     
